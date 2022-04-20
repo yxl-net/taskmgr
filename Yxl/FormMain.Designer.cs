@@ -1,7 +1,7 @@
 ﻿
 namespace Yxl
 {
-    partial class Form1
+    partial class FormMain
     {
         /// <summary>
         /// 必需的设计器变量。
@@ -29,15 +29,19 @@ namespace Yxl
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormMain));
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             this.ts = new System.Windows.Forms.ToolStrip();
             this.tslFilter = new System.Windows.Forms.ToolStripLabel();
             this.tstFilter = new System.Windows.Forms.ToolStripTextBox();
             this.tsbRefresh = new System.Windows.Forms.ToolStripButton();
-            this.tss1 = new System.Windows.Forms.ToolStripSeparator();
-            this.tscServices = new System.Windows.Forms.ToolStripButton();
+            this.tssRefresh = new System.Windows.Forms.ToolStripSeparator();
+            this.tsrServices = new System.Windows.Forms.ToolStripButton();
+            this.tsrProcess = new System.Windows.Forms.ToolStripButton();
+            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
+            this.tslCount = new System.Windows.Forms.ToolStripLabel();
             this.dgv = new System.Windows.Forms.DataGridView();
             this.ts.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgv)).BeginInit();
@@ -50,8 +54,11 @@ namespace Yxl
             this.tslFilter,
             this.tstFilter,
             this.tsbRefresh,
-            this.tss1,
-            this.tscServices});
+            this.tssRefresh,
+            this.tsrServices,
+            this.tsrProcess,
+            this.toolStripSeparator1,
+            this.tslCount});
             this.ts.Location = new System.Drawing.Point(0, 0);
             this.ts.Name = "ts";
             this.ts.Size = new System.Drawing.Size(800, 27);
@@ -70,38 +77,61 @@ namespace Yxl
             this.tstFilter.Font = new System.Drawing.Font("Microsoft YaHei UI", 9F);
             this.tstFilter.Name = "tstFilter";
             this.tstFilter.Size = new System.Drawing.Size(100, 27);
+            this.tstFilter.TextChanged += new System.EventHandler(this.tstFilter_TextChanged);
             // 
             // tsbRefresh
             // 
-            this.tsbRefresh.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
             this.tsbRefresh.Image = ((System.Drawing.Image)(resources.GetObject("tsbRefresh.Image")));
             this.tsbRefresh.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tsbRefresh.Name = "tsbRefresh";
-            this.tsbRefresh.Size = new System.Drawing.Size(29, 24);
-            this.tsbRefresh.Text = "toolStripButton1";
+            this.tsbRefresh.Size = new System.Drawing.Size(63, 24);
+            this.tsbRefresh.Text = "刷新";
+            this.tsbRefresh.Click += new System.EventHandler(this.tsbRefresh_Click);
             // 
-            // tss1
+            // tssRefresh
             // 
-            this.tss1.Name = "tss1";
-            this.tss1.Size = new System.Drawing.Size(6, 27);
+            this.tssRefresh.Name = "tssRefresh";
+            this.tssRefresh.Size = new System.Drawing.Size(6, 27);
             // 
-            // tscServices
+            // tsrServices
             // 
-            this.tscServices.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.tscServices.Image = ((System.Drawing.Image)(resources.GetObject("tscServices.Image")));
-            this.tscServices.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.tscServices.Name = "tscServices";
-            this.tscServices.RightToLeftAutoMirrorImage = true;
-            this.tscServices.Size = new System.Drawing.Size(29, 24);
-            this.tscServices.Text = "服务";
+            this.tsrServices.Image = ((System.Drawing.Image)(resources.GetObject("tsrServices.Image")));
+            this.tsrServices.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tsrServices.Name = "tsrServices";
+            this.tsrServices.RightToLeftAutoMirrorImage = true;
+            this.tsrServices.Size = new System.Drawing.Size(63, 24);
+            this.tsrServices.Text = "服务";
+            this.tsrServices.Click += new System.EventHandler(this.tsrServices_Click);
+            // 
+            // tsrProcess
+            // 
+            this.tsrProcess.Image = ((System.Drawing.Image)(resources.GetObject("tsrProcess.Image")));
+            this.tsrProcess.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tsrProcess.Name = "tsrProcess";
+            this.tsrProcess.Size = new System.Drawing.Size(63, 24);
+            this.tsrProcess.Text = "进程";
+            this.tsrProcess.Click += new System.EventHandler(this.tsrProcess_Click);
+            // 
+            // toolStripSeparator1
+            // 
+            this.toolStripSeparator1.Name = "toolStripSeparator1";
+            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 27);
+            // 
+            // tslCount
+            // 
+            this.tslCount.Name = "tslCount";
+            this.tslCount.Size = new System.Drawing.Size(18, 24);
+            this.tslCount.Text = "0";
             // 
             // dgv
             // 
             this.dgv.AllowUserToAddRows = false;
             this.dgv.AllowUserToDeleteRows = false;
+            this.dgv.AllowUserToOrderColumns = true;
             this.dgv.AllowUserToResizeRows = false;
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(224)))), ((int)(((byte)(192)))));
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(245)))), ((int)(((byte)(213)))));
             this.dgv.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            this.dgv.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
             dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Control;
             dataGridViewCellStyle2.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
@@ -110,7 +140,15 @@ namespace Yxl
             dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
             dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
             this.dgv.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
-            this.dgv.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgv.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(205)))), ((int)(((byte)(222)))), ((int)(((byte)(194)))));
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgv.DefaultCellStyle = dataGridViewCellStyle3;
             this.dgv.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgv.Location = new System.Drawing.Point(0, 27);
             this.dgv.MultiSelect = false;
@@ -119,19 +157,22 @@ namespace Yxl
             this.dgv.RowHeadersVisible = false;
             this.dgv.RowHeadersWidth = 51;
             this.dgv.RowTemplate.Height = 27;
-            this.dgv.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
+            this.dgv.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgv.Size = new System.Drawing.Size(800, 423);
             this.dgv.TabIndex = 1;
+            this.dgv.CellMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgv_CellMouseClick);
             // 
-            // Form1
+            // FormMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
             this.Controls.Add(this.dgv);
             this.Controls.Add(this.ts);
-            this.Name = "Form1";
-            this.Text = "Form1";
+            this.Name = "FormMain";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.Text = "程序员的任务管理器";
+            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.ts.ResumeLayout(false);
             this.ts.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgv)).EndInit();
@@ -146,9 +187,12 @@ namespace Yxl
         private System.Windows.Forms.ToolStripLabel tslFilter;
         private System.Windows.Forms.ToolStripTextBox tstFilter;
         private System.Windows.Forms.ToolStripButton tsbRefresh;
-        private System.Windows.Forms.ToolStripSeparator tss1;
-        private System.Windows.Forms.ToolStripButton tscServices;
+        private System.Windows.Forms.ToolStripSeparator tssRefresh;
+        private System.Windows.Forms.ToolStripButton tsrServices;
+        private System.Windows.Forms.ToolStripButton tsrProcess;
         private System.Windows.Forms.DataGridView dgv;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
+        private System.Windows.Forms.ToolStripLabel tslCount;
     }
 }
 
